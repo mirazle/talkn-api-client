@@ -13,14 +13,12 @@
     "jsx": "react",
     "paths": {
       "@common/*": ["common/src/*"],
-      "@api/*": ["./src/*"],
-      "@visualizar/*": ["./visualizar/*"]
+      "@api/*": ["./src/*"]
     }
   },
   // コンパイル対象
   "include": [
     "src/**/*.ts", // src ディレクトリ内のすべての TypeScript ファイル
-    "visualizar/**/*.ts", // src ディレクトリ内のすべての TypeScript ファイル
     "common/src/**/*.ts" // talkn-common ディレクトリ内の TypeScript ファイル
   ],
   "exclude": [

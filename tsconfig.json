@@ -6,6 +6,7 @@
     "outDir": "./dist", // コンパイルされたファイルを dist ディレクトリに出力します
     "baseUrl": ".", // モジュール解決のためのベースディレクトリ
     "strict": true, // 厳格な型チェックを有効にします
+    "resolveJsonModule": true,
     "esModuleInterop": true, // ESモジュールとの相互運用性を有効にします
     "forceConsistentCasingInFileNames": true, // ファイル名の大文字小文字を一貫させることを強制します
     "types": ["node", "webpack-env"],

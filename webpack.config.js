@@ -19,6 +19,7 @@ module.exports = {
         exclude: [/node_modules/],
         use: [{ loader: 'ts-loader' }],
       },
+      { test: /\.json$/, type: 'json' },
     ],
   },
   resolve: {

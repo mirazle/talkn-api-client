@@ -1,11 +1,13 @@
 import io, { Socket } from 'socket.io-client';
 
+import ChConfigModel, { ChConfigJson } from '@common/models/ChConfig';
+import chConfig from '@common/ch-config.json';
 import BootOptionModel from '@common/models/BootOption';
 import Sequence from '@common/Sequence';
 import conf from '@common/conf';
 import define from '@common/define';
 import { isValidKey } from '@common/utils';
-import ChModel from '@common/models/Ch';
+import ChModel, { Connection } from '@common/models/Ch';
 import { TuneOption, init as tuneOptionInit } from '@common/models/TuneOption';
 import WsClientToApiRequestActions from '@api/redux/actions/apiToServerRequest';
 import ApiState from '@api/state';
@@ -13,6 +15,7 @@ import ApiState from '@api/state';
 import WssWorker, { Pid, TuneId, statusTunning } from '.';
 
 type SocketCustom = Socket & { _callbacks: { [key: string]: Function } };
+const chConfigJson = chConfig as ChConfigModel;
 
 // 複数のioのリクエストとレスポンスを受け取るのに専念する
 export default class ToServer {
@@ -74,6 +77,8 @@ export default class ToServer {
       connection = BootOptionModel.getConnection(bootOption.connection);
       tuneOption = bootOption.tuneOption;
       urlSearchParams += `&${BootOptionModel.getTuneOptionString(bootOption.tuneOption)}`;
+      const myChConfig = ChConfigModel.getMyChConfig(chConfigJson as ChConfigJson, connection);
+      console.log(myChConfig);
     }
 
     const endpoint = `${Sequence.HTTPS_PROTOCOL}//${ToServer.domain}:${define.PORTS.IO_LB}${urlSearchParams}`;

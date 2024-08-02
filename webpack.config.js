@@ -40,8 +40,8 @@ module.exports = {
     server: {
       type: 'https',
       options: {
-        key: path.resolve(__dirname, `../talkn-certs/localhost.key`),
-        cert: path.resolve(__dirname, `../talkn-certs/localhost.crt`),
+        key: path.resolve(__dirname, `~/talkn-ch-gateway/common/ch-confs/localhost/openssl.key`),
+        cert: path.resolve(__dirname, `~/talkn-ch-gateway/common/ch-confs/localhost/openssl.crt`),
       },
     },
     port: 8000,

@@ -72,16 +72,21 @@ export default class ToServer {
     let connection = ChModel.rootConnection;
     let tuneOption: TuneOption = { ...tuneOptionInit };
     let urlSearchParams = `?tuneId=${tuneId}`;
+    let hostPort = `${ToServer.domain}:${define.PORTS.IO_LB}`;
 
     if (bootOption) {
       connection = BootOptionModel.getConnection(bootOption.connection);
       tuneOption = bootOption.tuneOption;
       urlSearchParams += `&${BootOptionModel.getTuneOptionString(bootOption.tuneOption)}`;
+
+      // TODO: rootsのtopConfgを使用する。
       const myChConfig = ChConfigModel.getMyChConfig(chConfigJson as ChConfigJson, connection);
-      console.log(myChConfig);
+      if (myChConfig.gateway) {
+        hostPort = `${myChConfig.gateway.host}:${myChConfig.gateway.port}`;
+      }
     }
 
-    const endpoint = `${Sequence.HTTPS_PROTOCOL}//${ToServer.domain}:${define.PORTS.IO_LB}${urlSearchParams}`;
+    const endpoint = `${Sequence.HTTPS_PROTOCOL}//${hostPort}${urlSearchParams}`;
     this.ios[tuneId] = io(endpoint, { ...ToServer.option, path: connection }) as SocketCustom;
     this.ios[tuneId].on('connect', () => this.wssWorker.postMessage({ pid, tuneId, method: statusTunning }));
 

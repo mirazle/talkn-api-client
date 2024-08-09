@@ -1,4 +1,4 @@
-import { StoresDispatcher } from '@api/wssWorker/StoresDispatcher';
+import { StoresDispatcher } from '@api-client/wssWorker/StoresDispatcher';
 
 export type PublicApiMethods = {
   ver: string;

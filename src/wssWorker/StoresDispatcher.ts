@@ -4,8 +4,8 @@ import { Unsubscribe } from '@reduxjs/toolkit';
 import { inits, Types } from '@common/models';
 import Sequence from '@common/Sequence';
 import { generateQniqueKey, generateQniqueKeySeparator } from '@common/utils';
-import { ApiStore, createApiStore } from '@api/redux/store';
-import ApiState from '@api/state';
+import { ApiStore, createApiStore } from '@api-client/redux/store';
+import ApiState from '@api-client/state';
 import { Pid, TuneId, Status, PostMessage, statusTunning } from '.';
 
 type ResponseType = {

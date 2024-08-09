@@ -1,4 +1,4 @@
-import ApiState from '@api/state';
+import ApiState from '@api-client/state';
 import ToServer from './ToServer';
 
 export type Pid = string;

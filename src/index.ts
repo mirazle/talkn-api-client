@@ -1,6 +1,6 @@
 import define from '@common/define';
-import createStoresDispatcher, { Options } from '@api/wssWorker/StoresDispatcher';
-import PublicApi, { PublicApiMethods } from '@api/public.api';
+import createStoresDispatcher, { Options } from '@api-client/wssWorker/StoresDispatcher';
+import PublicApi, { PublicApiMethods } from '@api-client/public.api';
 
 const { hostname, search, protocol } = location;
 const { PRODUCTION_DOMAIN, DEVELOPMENT_DOMAIN } = define;

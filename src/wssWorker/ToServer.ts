@@ -9,8 +9,8 @@ import define from '@common/define';
 import { isValidKey } from '@common/utils';
 import ChModel, { Connection } from '@common/models/Ch';
 import { TuneOption, init as tuneOptionInit } from '@common/models/TuneOption';
-import WsClientToApiRequestActions from '@api/redux/actions/apiToServerRequest';
-import ApiState from '@api/state';
+import WsClientToApiRequestActions from '@api-client/redux/actions/apiToServerRequest';
+import ApiState from '@api-client/state';
 
 import WssWorker, { Pid, TuneId, statusTunning } from '.';
 
@@ -79,7 +79,6 @@ export default class ToServer {
       tuneOption = bootOption.tuneOption;
       urlSearchParams += `&${BootOptionModel.getTuneOptionString(bootOption.tuneOption)}`;
 
-      // TODO: rootsのtopConfgを使用する。
       const myChConfig = ChConfigModel.getMyChConfig(chConfigJson as ChConfigJson, connection);
       if (myChConfig.gateway) {
         hostPort = `${myChConfig.gateway.host}:${myChConfig.gateway.port}`;

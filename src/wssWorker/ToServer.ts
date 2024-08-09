@@ -15,7 +15,7 @@ import ApiState from '@api-client/state';
 import WssWorker, { Pid, TuneId, statusTunning } from '.';
 
 type SocketCustom = Socket & { _callbacks: { [key: string]: Function } };
-const chConfigJson = chConfig as ChConfigModel;
+const chConfigJson = chConfig;
 
 // 複数のioのリクエストとレスポンスを受け取るのに専念する
 export default class ToServer {
@@ -79,10 +79,8 @@ export default class ToServer {
       tuneOption = bootOption.tuneOption;
       urlSearchParams += `&${BootOptionModel.getTuneOptionString(bootOption.tuneOption)}`;
 
-      const myChConfig = ChConfigModel.getMyChConfig(chConfigJson as ChConfigJson, connection);
-      if (myChConfig.gateway) {
-        hostPort = `${myChConfig.gateway.host}:${myChConfig.gateway.port}`;
-      }
+      const gateway = ChConfigModel.getGateway({ chConfigJson, tuneConnection: connection });
+      hostPort = `${gateway.host}:${gateway.port}`;
     }
 
     const endpoint = `${Sequence.HTTPS_PROTOCOL}//${hostPort}${urlSearchParams}`;

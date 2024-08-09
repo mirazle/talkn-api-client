@@ -14,7 +14,7 @@
     "jsx": "react",
     "paths": {
       "@common/*": ["common/src/*"],
-      "@api/*": ["./src/*"]
+      "@api-client/*": ["./src/*"]
     }
   },
   // コンパイル対象

@@ -24,7 +24,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      '@api': path.resolve(__dirname, 'src') + '/',
+      '@api-client': path.resolve(__dirname, 'src') + '/',
       '@common': path.resolve(__dirname, 'common/src') + '/',
     },
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
